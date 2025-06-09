@@ -48,4 +48,56 @@ public class Tree {
 //		printNode(rootNode);
 //		System.out.println();
 //	} // end printBST()
+	
+	void preordertraversal() { // rootNode 가 private 기 때문에
+		preorder(rootNode);
+	}
+	
+	void preorder(TreeNode T) {
+		if(T != null) {
+			System.out.print("->" + T.key);
+			preorder(T.left);
+			preorder(T.right);
+		}
+	}
+	
+	void inordertraversal() { // 동일
+		inorder(rootNode);
+	}
+	
+	void inorder(TreeNode T) {
+		if(T != null) {
+			inorder(T.left);
+			System.out.print("->" + T.key);
+			inorder(T.right);
+		}
+	}
+	
+	void postordertraversal() {
+		postorder(rootNode);
+	}
+	
+	void postorder(TreeNode T) {
+		if(T != null) {
+			postorder(T.left);
+			postorder(T.right);
+			System.out.print("->" + T.key);
+		}
+	}
+	
+	// 비순환 알고리즘
+	void iter_inorder(TreeNode T) {
+	    ArrayStack stk = new ArrayStack();
+	    TreeNode node = T;
+	    for ( ; ; ) {
+	        for ( ; node!=null; node = node.left)
+	            stk.push(node);  /* 스택에 삽입 */
+	        node = (TreeNode)stk.pop(); /* 스택에서 삭제 */
+	        if (node == null) break;        /* 공백 스택 */
+	        System.out.print(node.key + " -> ");
+	        node = node.right;
+	    }
+	}
+	
+	//need more
 }
